@@ -44,6 +44,8 @@ public class ManagerActivity extends Activity {
         //cet adapter servira à remplir notre recyclerview
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, dogs);
 
+
+        // clic sur un item
         myAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +55,7 @@ public class ManagerActivity extends Activity {
             }
         });
 
+        // clic pour ajouter un nouveau chien (espion)
         btnAjouter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
