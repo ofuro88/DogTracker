@@ -34,8 +34,8 @@ public class ManagerActivity extends Activity {
         //création de la liste de dog
         addDogs();
 
-        final RecyclerView recyclerView = findViewById(R.id.rv_dog_main);
-        final Button btnAjouter = findViewById(R.id.btn_ajouter_main);
+        RecyclerView recyclerView = findViewById(R.id.rv_dog_main);
+        Button btnAjouter = findViewById(R.id.btn_ajouter_main);
 
         //définit l'agencement des items,
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
