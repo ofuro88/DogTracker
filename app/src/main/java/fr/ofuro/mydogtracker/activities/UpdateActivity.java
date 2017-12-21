@@ -6,10 +6,6 @@ import android.support.annotation.Nullable;
 
 import fr.ofuro.mydogtracker.R;
 
-/**
- * Created by ofuro on 20/12/2017.
- */
-
 public class UpdateActivity extends Activity {
 
     //TODO: remplir la classe UPDATE pour l'ajout et modif
