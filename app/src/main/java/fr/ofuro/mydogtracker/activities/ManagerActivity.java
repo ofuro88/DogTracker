@@ -72,11 +72,13 @@ public class ManagerActivity extends Activity {
         // vide la liste
         listeVide = dogs.removeAll(dogs);
 
-        Dog dog1 = new Dog("rex", 48.00729242667558, -3.6947858333587646);
-        Dog dog2 = new Dog("medor", 48.014065, -3.69735);
-        Dog dog3 = new Dog("rox", 48.022275,  -3.704731);
-        Dog dog4 = new Dog("rookie", 48.017197, -3.699378);
-        Dog dog5 = new Dog("choupette", 48.019462, -3.687994);
+
+        // bouchon de données pour test sans web service
+        Dog dog1 = new Dog(1, "rex", 1, 48.00729242667558, -3.6947858333587646);
+        Dog dog2 = new Dog(2, "medor", 1, 48.014065, -3.69735);
+        Dog dog3 = new Dog(3, "rox", 1, 48.022275,  -3.704731);
+        Dog dog4 = new Dog(4, "rookie", 1, 48.017197, -3.699378);
+        Dog dog5 = new Dog(5, "choupette", 1, 48.019462, -3.687994);
 
         dogs.add(dog1);
         dogs.add(dog2);
