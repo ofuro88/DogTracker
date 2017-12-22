@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 
 import fr.ofuro.mydogtracker.R;
+import fr.ofuro.mydogtracker.models.Location;
+
+import static fr.ofuro.mydogtracker.activities.ManagerActivity.dogs;
+import static fr.ofuro.mydogtracker.activities.ManagerActivity.locations;
 
 /**
  * Created by ofuro on 20/12/2017.
@@ -24,12 +28,14 @@ public class MenuActivity extends Activity {
         final Button btnAfficher = findViewById(R.id.btn_menu_afficher);
         final Button btnSupp = findViewById(R.id.btn_menu_supp);
 
+        //récupère l'id de l'item cliqué
+        final int idItem = getIntent().getExtras().getInt("idItem");
 
         btnAfficher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, MapsActivity.class);
-                //TODO : intégrer les données du chien dans l'intent pour le marqueur
+                intent.putExtra("idItem", idItem);
                 startActivity(intent);
             }
         });
@@ -37,8 +43,8 @@ public class MenuActivity extends Activity {
         btnHistorique.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(MenuActivity.this, AddActivity.class);
-                //TODO: gérer la vue Update pour les ajouts ou les modifications avec un TAG
+                Intent intent = new Intent(MenuActivity.this, Historique.class);
+                intent.putExtra("idItem", idItem);
                 startActivity(intent);
             }
         });
@@ -46,8 +52,15 @@ public class MenuActivity extends Activity {
         btnSupp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                // supprimer historique
+                for (Location loc:locations) {
+                    if (loc.getIdDog()==idItem){
+                        locations.remove(loc);
+                    }
+                }
 
-                //TODO : gérer la suppression d'un chien
+                // supprime le chien de la liste
+                dogs.remove(dogs.get(idItem));
             }
         });
 

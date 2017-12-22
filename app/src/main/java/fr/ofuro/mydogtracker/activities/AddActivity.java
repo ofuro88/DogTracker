@@ -13,7 +13,6 @@ import fr.ofuro.mydogtracker.models.Dog;
 
 public class AddActivity extends Activity {
 
-    //TODO: remplir la classe UPDATE pour l'ajout et modif
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

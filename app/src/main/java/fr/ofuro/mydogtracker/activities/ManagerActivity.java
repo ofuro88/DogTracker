@@ -12,12 +12,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.ofuro.mydogtracker.R;
 import fr.ofuro.mydogtracker.adapter.RecyclerViewAdapter;
 import fr.ofuro.mydogtracker.models.Dog;
 import fr.ofuro.mydogtracker.models.Location;
+import fr.ofuro.mydogtracker.tools.MyTools;
 
 
 /**
@@ -40,7 +42,7 @@ public class ManagerActivity extends Activity {
             addDogs();
         }
 
-        RecyclerView recyclerView = findViewById(R.id.rv_dog_main);
+        final RecyclerView recyclerView = findViewById(R.id.rv_main_dog);
         Button btnAdd = findViewById(R.id.btn_main_add);
         Button btnDisplayAll = findViewById(R.id.btn_main_displayall);
 
@@ -49,14 +51,19 @@ public class ManagerActivity extends Activity {
 
         //puis créer un RecyclerViewAdapter, lui fournir notre liste de dogs.
         //cet adapter servira à remplir notre recyclerview
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, dogs);
+        final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, dogs);
 
-        //TODO : intégrer les données du/des chien dans l'intent des listeners
         // clic sur un item
         myAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int idItem;
+                int position = recyclerView.getChildLayoutPosition(v);
+                idItem = dogs.get(position).getId();
+
                 Intent intent = new Intent(ManagerActivity.this, MenuActivity.class);
+                intent.putExtra("idItem", idItem);
                 startActivity(intent);
             }
         });
@@ -66,7 +73,6 @@ public class ManagerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManagerActivity.this, AddActivity.class);
-                //TODO : créer la vue de l'activity Ajouter
                 startActivityForResult(intent, MANAGER_ACTIVITY_CODE);
             }
         });
@@ -76,6 +82,7 @@ public class ManagerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManagerActivity.this, MapsActivity.class);
+                intent.putExtra("idItem", 0);
                 startActivity(intent);
             }
         });
@@ -95,6 +102,8 @@ public class ManagerActivity extends Activity {
         boolean listeVideDog = false;
         boolean listeVideLoc = false;
 
+        Date date = MyTools.convertStringToDate("19:00:00 01-12-2017");
+
         // vide les listes
         listeVideDog = dogs.removeAll(dogs);
         listeVideLoc = locations.removeAll(locations);
@@ -108,17 +117,17 @@ public class ManagerActivity extends Activity {
         Dog dog5 = new Dog(5, "choupette", 1);
 
         // exemple d'historique sur dog1
-        Location loc1 = new Location(1, 48.00729242667558, -3.6947858333587646, 1);
-        Location loc2 = new Location(2, 48.014065, -3.69735, 1);
-        Location loc3 = new Location(3, 48.022275,  -3.704731, 1);
-        Location loc4 = new Location(4, 48.017197, -3.699378, 1);
-        Location loc5 = new Location(5, 48.019462, -3.687994, 1);
+        Location loc1 = new Location(1, 48.00729242667558, -3.6947858333587646, date, 1);
+        Location loc2 = new Location(2, 48.014065, -3.69735, date,1);
+        Location loc3 = new Location(3, 48.022275,  -3.704731, date,1);
+        Location loc4 = new Location(4, 48.017197, -3.699378, date,1);
+        Location loc5 = new Location(5, 48.019462, -3.687994, date,1);
 
         // 1 position pour chaque dog
-        Location loc6 = new Location(1, 48.00729242667558, -3.6947858333587646, 2);
-        Location loc7 = new Location(1, 48.00729242667558, -3.6947858333587646, 3);
-        Location loc8 = new Location(1, 48.00729242667558, -3.6947858333587646, 4);
-        Location loc9 = new Location(1, 48.00729242667558, -3.6947858333587646, 5);
+        Location loc6 = new Location(1, 48.00729242667558, -3.6947858333587646, date,2);
+        Location loc7 = new Location(1, 48.00729242667558, -3.6947858333587646, date,3);
+        Location loc8 = new Location(1, 48.00729242667558, -3.6947858333587646, date,4);
+        Location loc9 = new Location(1, 48.00729242667558, -3.6947858333587646, date,5);
 
         // ajout aux listes
         dogs.add(dog1);

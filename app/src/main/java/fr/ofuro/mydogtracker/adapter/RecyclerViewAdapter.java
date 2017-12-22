@@ -4,18 +4,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Context;
-import android.widget.Toast;
 
 import java.util.List;
 
 import fr.ofuro.mydogtracker.R;
-import fr.ofuro.mydogtracker.viewholder.MyViewHolder;
+import fr.ofuro.mydogtracker.viewholder.MyViewHolderDog;
 import fr.ofuro.mydogtracker.models.Dog;
 
 /**
  * Created by ofuro on 20/10/2017.
  */
-public class RecyclerViewAdapter<T> extends RecyclerView.Adapter<MyViewHolder> {
+public class RecyclerViewAdapter<T> extends RecyclerView.Adapter<MyViewHolderDog> {
     private List<Dog> list;
     private Context context;
     private View.OnClickListener onClickListener;
@@ -27,7 +26,7 @@ public class RecyclerViewAdapter<T> extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder viewHolder, int position) {
+    public void onBindViewHolder(MyViewHolderDog viewHolder, int position) {
         Dog myDog = list.get(position);
         viewHolder.bind(myDog);
     }
@@ -38,17 +37,17 @@ public class RecyclerViewAdapter<T> extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        MyViewHolder myViewHolder;
-        myViewHolder = new MyViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_dog,viewGroup,false));
+    public MyViewHolderDog onCreateViewHolder(ViewGroup viewGroup, int i) {
+        MyViewHolderDog myViewHolderDog;
+        myViewHolderDog = new MyViewHolderDog(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_dog,viewGroup,false));
 
-        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        myViewHolderDog.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onClickListener.onClick(view);
             }
         });
-        return myViewHolder;
+        return myViewHolderDog;
     }
 
     public void setOnClickListener(View.OnClickListener onClickListener){

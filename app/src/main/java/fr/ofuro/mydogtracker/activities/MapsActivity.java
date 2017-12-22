@@ -40,10 +40,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // ajoute le marqueur du chien choisi et centre la vue de la map sur ce dernier
+        // ajoute le/les marqueurs et centre la vue de la map
         LatLng dogMarker = new LatLng(48.0910719,-1.6312768);
 
-        //TODO finaliser l'ajout du marqueur: récup de données, affichage du nom + dernière date
+        //TODO finaliser l'ajout des marqueur: récup de données, affichage du nom + dernière date
         mMap.addMarker(new MarkerOptions().position(dogMarker).title("Marqueur de My Digital School"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(dogMarker));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));

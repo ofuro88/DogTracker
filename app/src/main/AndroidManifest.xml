@@ -67,7 +67,12 @@
 
         <activity
             android:name=".activities.AddActivity"
-            android:label="@string/title_activity_Add">
+            android:label="@string/title_activity_add">
+        </activity>
+
+        <activity
+            android:name=".activities.Historique"
+            android:label="@string/title_activity_historique">
         </activity>
 
     </application>
