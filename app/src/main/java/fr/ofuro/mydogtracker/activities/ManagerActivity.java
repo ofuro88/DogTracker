@@ -86,7 +86,7 @@ public class ManagerActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManagerActivity.this, MapsActivity.class);
-                intent.putExtra("idItem", 0);
+                intent.putExtra("idItem", -1);
                 startActivity(intent);
             }
         });
@@ -127,10 +127,10 @@ public class ManagerActivity extends Activity {
         Location loc5 = new Location(5, 48.019462, -3.687994, date,1);
 
         // 1 position pour chaque dog
-        Location loc6 = new Location(1, 48.00729242667558, -3.6947858333587646, date,2);
-        Location loc7 = new Location(1, 48.00729242667558, -3.6947858333587646, date,3);
-        Location loc8 = new Location(1, 48.00729242667558, -3.6947858333587646, date,4);
-        Location loc9 = new Location(1, 48.00729242667558, -3.6947858333587646, date,5);
+        Location loc6 = new Location(1, 48.014065, -3.69735, date,2);
+        Location loc7 = new Location(1, 48.022275, -3.704731, date,3);
+        Location loc8 = new Location(1, 48.017197, -3.699378, date,4);
+        Location loc9 = new Location(1, 48.019462, -3.687994, date,5);
 
         // ajout aux listes
         dogs.add(dog1);

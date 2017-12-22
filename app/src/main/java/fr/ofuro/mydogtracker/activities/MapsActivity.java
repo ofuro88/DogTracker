@@ -10,7 +10,15 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.ofuro.mydogtracker.R;
+import fr.ofuro.mydogtracker.models.Location;
+import fr.ofuro.mydogtracker.tools.MyTools;
+
+import static fr.ofuro.mydogtracker.activities.ManagerActivity.dogs;
+import static fr.ofuro.mydogtracker.activities.ManagerActivity.locations;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -20,6 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ll_activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -40,12 +49,54 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // ajoute le/les marqueurs et centre la vue de la map
-        LatLng dogMarker = new LatLng(48.0910719,-1.6312768);
+        List<Location> locationList = getLocsList();
+        LatLng dogMarker = null;
 
-        //TODO finaliser l'ajout des marqueur: récup de données, affichage du nom + dernière date
-        mMap.addMarker(new MarkerOptions().position(dogMarker).title("Marqueur de My Digital School"));
+        // seulement 5 marqueur pour les tests
+        // ajoute le/les marqueurs et centre la vue de la map
+        for(int i = 0; i<locationList.size(); i++) {
+
+            // création des objets "gps"
+            dogMarker = new LatLng(locationList.get(i).getLatitude(), locationList.get(i).getLongitude());
+
+            // récupère certaines infos
+            String dogName = dogs.get(locationList.get(i).getIdDog()-1).getName();
+            String date = MyTools.convertDateToString(locationList.get(i).getDate());
+
+            //ajout des marqueurs
+            mMap.addMarker(new MarkerOptions().position(dogMarker).title(dogName + " : " + date));
+        }
+
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(dogMarker));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+    }
+
+    //methode pour reccueillir toutes les dernière positions de chaque chien
+    public List<Location> getLocsList(){
+
+        //ATTENTION: methode uniquement applicable pour les tests sans webservice
+        List<Location> locationList = new ArrayList<>();
+
+        int nbDogs = dogs.size();
+        int idLocation;
+        boolean trouver;
+
+        for (int idDog = 1; idDog<=nbDogs; idDog++){
+
+            // on repars du début de la liste
+            idLocation = 0;
+            trouver = false;
+
+            while(idLocation!=locations.size() && trouver == false){
+                if(locations.get(idLocation).getIdDog() == idDog){
+                    locationList.add(locations.get(idLocation));
+                    trouver = true;
+                }
+                idLocation++;
+            }
+        }
+
+        return locationList;
     }
 }
