@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,20 @@ public class ManagerActivity extends Activity {
 
     public static List<Dog> dogs = new ArrayList<>();
     public static List<Location> locations = new ArrayList<>();
+    private static final int MANAGER_ACTIVITY_CODE = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ll_activity_manager);
 
-        //création de la liste de dog
-        addDogs();
+        //création de la liste de dog (si elle et vide, seulement au lancement de l'appli)
+        if(dogs.size()==0) {
+            addDogs();
+        }
 
         RecyclerView recyclerView = findViewById(R.id.rv_dog_main);
-        Button btnAdd = findViewById(R.id.btn_ajouter_main);
+        Button btnAdd = findViewById(R.id.btn_main_add);
         Button btnDisplayAll = findViewById(R.id.btn_main_displayall);
 
         //définit l'agencement des items,
@@ -63,7 +67,7 @@ public class ManagerActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(ManagerActivity.this, AddActivity.class);
                 //TODO : créer la vue de l'activity Ajouter
-                startActivity(intent);
+                startActivityForResult(intent, MANAGER_ACTIVITY_CODE);
             }
         });
 
@@ -77,6 +81,13 @@ public class ManagerActivity extends Activity {
         });
 
         recyclerView.setAdapter(myAdapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode == RESULT_OK){
+            Toast.makeText(this, "Votre chien est ajouté", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // update de la liste des chiens enregistrés
