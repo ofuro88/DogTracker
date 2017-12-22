@@ -34,4 +34,15 @@ public class Location {
     public int getIdDog(){
         return this.idDog;
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id='" + idLoc +
+                ", lat:'" + latitude +
+                ", long:'" + longitude +
+                ", date:'" + date +
+                ", idDog:'" + idDog +
+                '}';
+    }
 }

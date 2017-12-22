@@ -21,12 +21,15 @@ import fr.ofuro.mydogtracker.models.Dog;
 import fr.ofuro.mydogtracker.models.Location;
 import fr.ofuro.mydogtracker.tools.MyTools;
 
+import static fr.ofuro.mydogtracker.activities.LoginActivity.initOk;
+
 
 /**
  * Created by ofuro on 27/10/2017.
  */
 
 public class ManagerActivity extends Activity {
+//TODO: initialisation à vérifier, probleme de listing des dogs
 
     public static List<Dog> dogs = new ArrayList<>();
     public static List<Location> locations = new ArrayList<>();
@@ -38,8 +41,9 @@ public class ManagerActivity extends Activity {
         setContentView(R.layout.ll_activity_manager);
 
         //création de la liste de dog (si elle et vide, seulement au lancement de l'appli)
-        if(dogs.size()==0) {
-            addDogs();
+        if(initOk == false) {
+            initData();
+            initOk = true;
         }
 
         final RecyclerView recyclerView = findViewById(R.id.rv_main_dog);
@@ -64,7 +68,7 @@ public class ManagerActivity extends Activity {
 
                 Intent intent = new Intent(ManagerActivity.this, MenuActivity.class);
                 intent.putExtra("idItem", idItem);
-                startActivity(intent);
+                startActivityForResult(intent, MANAGER_ACTIVITY_CODE);
             }
         });
 
@@ -98,16 +102,15 @@ public class ManagerActivity extends Activity {
     }
 
     // update de la liste des chiens enregistrés
-    public void addDogs(){
-        boolean listeVideDog = false;
-        boolean listeVideLoc = false;
-
-        Date date = MyTools.convertStringToDate("19:00:00 01-12-2017");
+    public static void initData(){
+//        boolean listeVideDog = false;
+//        boolean listeVideLoc = false;
 
         // vide les listes
-        listeVideDog = dogs.removeAll(dogs);
-        listeVideLoc = locations.removeAll(locations);
+//        listeVideDog = dogs.removeAll(dogs);
+//        listeVideLoc = locations.removeAll(locations);
 
+        Date date = MyTools.convertStringToDate("19:00:00 01-12-2017");
 
         // bouchon de données pour test sans web service
         Dog dog1 = new Dog(1, "rex", 1);

@@ -17,6 +17,8 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
     private Button btn_sign_in;
     private Button btn_register;
+    public static boolean initOk = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

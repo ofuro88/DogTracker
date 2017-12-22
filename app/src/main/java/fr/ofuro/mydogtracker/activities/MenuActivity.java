@@ -41,6 +41,7 @@ public class MenuActivity extends Activity {
         });
 
         btnHistorique.setOnClickListener(new View.OnClickListener(){
+            //TODO: crash, n'affiche pas l'activity
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(MenuActivity.this, Historique.class);
@@ -50,6 +51,7 @@ public class MenuActivity extends Activity {
         });
 
         btnSupp.setOnClickListener(new View.OnClickListener(){
+            //TODO: crash, probleme de suppression à régler
             @Override
             public void onClick(View v){
                 // supprimer historique
@@ -61,6 +63,9 @@ public class MenuActivity extends Activity {
 
                 // supprime le chien de la liste
                 dogs.remove(dogs.get(idItem));
+
+                setResult(RESULT_OK);
+                finish();
             }
         });
 
