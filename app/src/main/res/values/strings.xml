@@ -5,7 +5,7 @@
     <string name="title_activity_register">Sign in</string>
     <string name="title_activity_manager">Manager</string>
     <string name="title_activity_menu">Menu</string>
-    <string name="title_activity_update">Update</string>
+    <string name="title_activity_Add">Ajouter</string>
 
 
     <!-- Strings related to login -->

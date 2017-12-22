@@ -66,8 +66,8 @@
         </activity>
 
         <activity
-            android:name=".activities.UpdateActivity"
-            android:label="@string/title_activity_update">
+            android:name=".activities.AddActivity"
+            android:label="@string/title_activity_Add">
         </activity>
 
     </application>

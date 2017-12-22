@@ -20,7 +20,7 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ll_activity_menu);
 
-        final Button btnModifier = findViewById(R.id.btn_menu_modifier);
+        final Button btnHistorique = findViewById(R.id.btn_menu_historique);
         final Button btnAfficher = findViewById(R.id.btn_menu_afficher);
         final Button btnSupp = findViewById(R.id.btn_menu_supp);
 
@@ -34,10 +34,10 @@ public class MenuActivity extends Activity {
             }
         });
 
-        btnModifier.setOnClickListener(new View.OnClickListener(){
+        btnHistorique.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(MenuActivity.this, UpdateActivity.class);
+                Intent intent = new Intent(MenuActivity.this, AddActivity.class);
                 //TODO: gérer la vue Update pour les ajouts ou les modifications avec un TAG
                 startActivity(intent);
             }
